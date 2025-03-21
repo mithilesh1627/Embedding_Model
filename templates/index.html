@@ -43,22 +43,31 @@
 
     <script>
         async function get_embedding() {
-            const text = document.getElementById("textInput").value;
+    const text = document.getElementById("textInput").value;
 
-            if (!text) {
-                alert("Please enter some text!");
-                return;
-            }
+    if (!text) {
+        alert("Please enter some text!");
+        return;
+    }
 
-            const response = await fetch("http://127.0.0.1:5000/embed", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text: text })
-            });
+    try {
+        const response = await fetch("http://127.0.0.1:5000/embed", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: text })
+        });
 
-            const data = await response.json();
-            document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`);
         }
+
+        const data = await response.json();
+        document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    } catch (error) {
+        document.getElementById("output").textContent = "Error: " + error.message;
+        console.error("Error fetching embedding:", error);
+    }
+}
     </script>
 
 </body>
