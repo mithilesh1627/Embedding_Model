@@ -1,5 +1,4 @@
 Flask
-tensorflow-cpu
-tensorflow_hub
 gunicorn
 flask-cors
+sentence_transformers
