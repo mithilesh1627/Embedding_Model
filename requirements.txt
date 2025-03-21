@@ -2,3 +2,4 @@ Flask
 tensorflow
 tensorflow_hub
 gunicorn
+flask-cors
