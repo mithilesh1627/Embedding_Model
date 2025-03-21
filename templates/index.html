@@ -36,6 +36,30 @@
 
     <h1>Text Embedding API</h1>
     <textarea id="textInput" placeholder="Enter text here..."></textarea><br><br>
-    <button onclick="fetchEmbedding()">Get Embedding</button>
+    <button onclick="get_embedding()">Get Embedding</button>
 
-    <h2>Embedding Output:</h2
+    <h2>Embedding Output:</h2>
+    <pre id="output"></pre>
+
+    <script>
+        async function get_embedding() {
+            const text = document.getElementById("textInput").value;
+
+            if (!text) {
+                alert("Please enter some text!");
+                return;
+            }
+
+            const response = await fetch("http://127.0.0.1:5000/embed", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text: text })
+            });
+
+            const data = await response.json();
+            document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+        }
+    </script>
+
+</body>
+</html>
