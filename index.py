@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from sentence_transformers import SentenceTransformer
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -18,12 +19,13 @@ def get_embedding():
             return jsonify({"error": "Text input is required"}), 400
 
         text = data["text"]
-        embedding = model.encode(text).tolist()  # Generate actual embeddings
+        embedding = model.encode(text).tolist() 
 
         return jsonify({"embedding": embedding})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+if __name__ == '__main__': 
+    port = int(os.environ.get("PORT", 5000))  
+    app.run(host='0.0.0.0', port=port, debug=True)
