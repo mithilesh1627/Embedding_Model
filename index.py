@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
-@app.route('/embed', methods=['POST'])
+@app.route('/', methods=['POST'])
 def get_embedding():
     try:
         if request.content_type != "application/json":
