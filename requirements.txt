@@ -1,4 +1,11 @@
 Flask
-gunicorn
 flask-cors
-sentence_transformers
+flask-pymongo
+faiss-cpu
+sentence-transformers
+requests
+markdown
+bs4
+youtube-transcript-api
+numpy
+gunicorn
