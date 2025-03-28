@@ -185,7 +185,7 @@ def add_embedding():
 
         print(f"✅ Added document: {doc}")
 
-        return jsonify({"message": "Embedding added successfully", "id": doc_id})
+        return jsonify({"message": "Embedding added successfully", "id": doc_id,"embedding":embedding})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
